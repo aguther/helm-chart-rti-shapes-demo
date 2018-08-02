@@ -29,7 +29,7 @@ routingService:
   verbosity: 3
   port: 7650
   service:
-    #type: LoadBalancer
+    type: ExternalIP
     ip: 172.30.0.11
     port: 7400
   resources:
