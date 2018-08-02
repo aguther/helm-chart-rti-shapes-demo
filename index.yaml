@@ -3,11 +3,11 @@ entries:
   rti-shapes-demo:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2018-08-02T20:53:23.805017296+02:00
+    created: 2018-08-02T21:01:45.079259138+02:00
     description: A Helm chart for Kubernetes
-    digest: 0d434b82e551c576daa2cc776cfb08d4a18bf2542777b594e036760b540203b7
+    digest: 5c5cfc4835be8b30c353ad872ee53b5ba7ce003228c18ed812ab145709bb6995
     name: rti-shapes-demo
     urls:
     - rti-shapes-demo-1.0.0.tgz
     version: 1.0.0
-generated: 2018-08-02T20:53:23.804681044+02:00
+generated: 2018-08-02T21:01:45.078817899+02:00
