@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: rti-cloud-discovery-service
+  name: {{ .Release.Name }}-rti-cloud-discovery-service
 data:
   USER_CLOUD_DISCOVERY_SERVICE.xml: |
 {{.Files.Get "files/rti-cloud-discovery-service/USER_CLOUD_DISCOVERY_SERVICE.xml" | printf "%s" | indent 4}}

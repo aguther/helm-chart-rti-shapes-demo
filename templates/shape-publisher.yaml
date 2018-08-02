@@ -2,14 +2,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: shape-publisher-square-blue
+  name: {{ .Release.Name }}-shape-publisher-square-blue
   labels:
     app: shape-publisher
+    release: {{ .Release.Name }}
     shapeKind: SQUARE
     shapeColor: BLUE
 spec:
   containers:
-    - name: shape-publisher
+    - name: {{ .Release.Name }}-shape-publisher
       image: {{ .Values.registry.url }}/{{ .Values.ddsExamples.image.name }}:{{ .Values.ddsExamples.image.tag }}
       resources:
         requests:
@@ -55,14 +56,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: shape-publisher-circle-red
+  name: {{ .Release.Name }}-shape-publisher-circle-red
   labels:
     app: shape-publisher
+    release: {{ .Release.Name }}
     shapeKind: CIRCLE
     shapeColor: RED
 spec:
   containers:
-    - name: shape-publisher
+    - name: {{ .Release.Name }}-shape-publisher
       image: {{ .Values.registry.url }}/dds-examples:latest
       resources:
         requests:
@@ -108,14 +110,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: shape-publisher-triangle-green
+  name: {{ .Release.Name }}-shape-publisher-triangle-green
   labels:
     app: shape-publisher
+    release: {{ .Release.Name }}
     shapeKind: TRIANGLE
     shapeColor: GREEN
 spec:
   containers:
-    - name: shape-publisher
+    - name: {{ .Release.Name }}-shape-publisher
       image: {{ .Values.registry.url }}/dds-examples:latest
       resources:
         requests:
