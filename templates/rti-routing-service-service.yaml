@@ -5,7 +5,7 @@ metadata:
   name: rti-routing-service
   release: {{ .Release.Name }}
 spec:
-  {{- if (.Values.routingService.service.type) and (eq .Values.routingService.service.type "LoadBalancer") }}
+  {{- if eq .Values.routingService.service.type "LoadBalancer" }}
   type: LoadBalancer
   loadBalancerIP: {{ .Values.routingService.service.ip }}
   {{- else }}
