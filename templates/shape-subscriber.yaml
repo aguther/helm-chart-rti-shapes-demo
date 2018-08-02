@@ -1,0 +1,138 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shape-subscriber-square
+  labels:
+    app: shape-subscriber
+    shapeKind: SQUARE
+spec:
+  containers:
+    - name: shape-subscriber
+      image: {{ .Values.registry.url }}/dds-examples:latest
+      resources:
+        requests:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.requests.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.requests.memory }}
+        limits:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.limits.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.limits.memory }}
+      env:
+        - name: SHAPE_KIND
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['shapeKind']
+        - name: NDDS_DISCOVERY_PEERS
+          value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+      args:
+        - "com.github.aguther.dds.examples.shape.ShapeSubscriber"
+        - "--shape"
+        - "$(SHAPE_KIND)"
+      ports:
+        - containerPort: 7400
+          protocol: "UDP"
+          name: "rtps2-disc-mult"
+        - containerPort: 7401
+          protocol: "UDP"
+          name: "rtps2-disc-uni"
+        - containerPort: 7410
+          protocol: "UDP"
+          name: "rtps2-data-mult"
+        - containerPort: 7411
+          protocol: "UDP"
+          name: "rtps2-data-uni"
+  imagePullSecrets:
+    - name: {{ .Values.registry.pullSecret }}
+  restartPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shape-subscriber-circle
+  labels:
+    app: shape-subscriber
+    shapeKind: CIRCLE
+spec:
+  containers:
+    - name: shape-subscriber
+      image: {{ .Values.registry.url }}/dds-examples:latest
+      resources:
+        requests:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.requests.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.requests.memory }}
+        limits:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.limits.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.limits.memory }}
+      env:
+        - name: SHAPE_KIND
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['shapeKind']
+        - name: NDDS_DISCOVERY_PEERS
+          value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+      args:
+        - "com.github.aguther.dds.examples.shape.ShapeSubscriber"
+        - "--shape"
+        - "$(SHAPE_KIND)"
+      ports:
+        - containerPort: 7400
+          protocol: "UDP"
+          name: "rtps2-disc-mult"
+        - containerPort: 7401
+          protocol: "UDP"
+          name: "rtps2-disc-uni"
+        - containerPort: 7410
+          protocol: "UDP"
+          name: "rtps2-data-mult"
+        - containerPort: 7411
+          protocol: "UDP"
+          name: "rtps2-data-uni"
+  imagePullSecrets:
+    - name: {{ .Values.registry.pullSecret }}
+  restartPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shape-subscriber-triangle
+  labels:
+    app: shape-subscriber
+    shapeKind: TRIANGLE
+spec:
+  containers:
+    - name: shape-subscriber
+      image: {{ .Values.registry.url }}/dds-examples:latest
+      resources:
+        requests:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.requests.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.requests.memory }}
+        limits:
+          cpu: {{ quote .Values.ddsExamples.subscriber.resources.limits.cpu }}
+          memory: {{ quote .Values.ddsExamples.subscriber.resources.limits.memory }}
+      env:
+        - name: SHAPE_KIND
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['shapeKind']
+        - name: NDDS_DISCOVERY_PEERS
+          value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+      args:
+        - "com.github.aguther.dds.examples.shape.ShapeSubscriber"
+        - "--shape"
+        - "$(SHAPE_KIND)"
+      ports:
+        - containerPort: 7400
+          protocol: "UDP"
+          name: "rtps2-disc-mult"
+        - containerPort: 7401
+          protocol: "UDP"
+          name: "rtps2-disc-uni"
+        - containerPort: 7410
+          protocol: "UDP"
+          name: "rtps2-data-mult"
+        - containerPort: 7411
+          protocol: "UDP"
+          name: "rtps2-data-uni"
+  imagePullSecrets:
+    - name: {{ .Values.registry.pullSecret }}
+  restartPolicy: Always

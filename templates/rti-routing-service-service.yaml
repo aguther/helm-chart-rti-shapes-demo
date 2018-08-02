@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rti-routing-service
+spec:
+  {{- if (.Values.routingService.service.type) and (eq .Values.routingService.service.type "LoadBalancer") }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.routingService.service.ip }}
+  {{- else }}
+  type: ClusterIP
+  externalIPs:
+    - {{ .Values.routingService.service.ip }}
+  {{- end }}
+  ports:
+  - port: {{ .Values.routingService.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.routingService.port }}
+  selector:
+    app: rti-routing-service
