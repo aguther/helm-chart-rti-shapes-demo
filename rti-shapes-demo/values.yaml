@@ -45,6 +45,13 @@ ddsExamples:
     name: dds-examples
     tag: latest
   publisher:
+    configurations:
+      - shapeKind: SQUARE
+        shapeColor: BLUE
+      - shapeKind: CIRCLE
+        shapeColor: RED
+      - shapeKind: TRIANGLE
+        shapeColor: GREEN
     resources:
       requests:
         cpu: 100m
@@ -53,6 +60,10 @@ ddsExamples:
         cpu: 150m
         memory: 200Mi
   subscriber:
+    configurations:
+      - shapeKind: SQUARE
+      - shapeKind: CIRCLE
+      - shapeKind: TRIANGLE
     resources:
       requests:
         cpu: 100m
