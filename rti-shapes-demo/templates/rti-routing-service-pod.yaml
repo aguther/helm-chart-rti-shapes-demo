@@ -49,7 +49,7 @@ spec:
           protocol: "TCP"
           name: "rtps2-tcp"
   imagePullSecrets:
-    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name }}
+    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
   volumes:
     - name: {{ .Release.Name }}-rti-routing-service
       configMap:

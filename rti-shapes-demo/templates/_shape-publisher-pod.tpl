@@ -51,6 +51,6 @@ spec:
           protocol: "UDP"
           name: "rtps2-data-uni"
   imagePullSecrets:
-    - name: {{ .releaseName }}-{{ .imageCredentialsName }}
+    - name: {{ .releaseName }}-{{ .imageCredentialsName | lower }}
   restartPolicy: Always
 {{ end }}

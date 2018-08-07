@@ -30,7 +30,7 @@ spec:
           protocol: "UDP"
           name: "rtps2-disc-mult"
   imagePullSecrets:
-    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name }}
+    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
   volumes:
     - name: {{ .Release.Name }}-rti-cloud-discovery-service
       configMap:
