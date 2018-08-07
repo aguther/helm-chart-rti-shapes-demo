@@ -22,6 +22,20 @@ cloudDiscoveryService:
       cpu: 100m
       memory: 50Mi
 
+persistenceService:
+  image:
+    name: rti-persistence-service
+    tag: 5.3.1
+  cfgName: dds-examples-persistence
+  verbosity: 3
+  resources:
+    requests:
+      cpu: 100m
+      memory: 80Mi
+    limits:
+      cpu: 150m
+      memory: 120Mi
+
 routingService:
   image:
     name: rti-routing-service

@@ -21,6 +21,7 @@
     </monitoring>
 
     <domain_route name="Default">
+
       <participant_1>
         <domain_id>0</domain_id>
         <participant_qos base_name="QosLibrary::Base"/>
@@ -136,6 +137,7 @@
           </output>
         </auto_topic_route>
       </session>
+
     </domain_route>
 
   </routing_service>
