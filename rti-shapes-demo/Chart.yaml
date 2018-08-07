@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "1.0"
 description: A Helm chart for RTI Shapes Demo on Kubernetes
 name: rti-shapes-demo
-version: 1.1.0
+version: 1.2.0

@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
     - name: {{ .Release.Name }}-rti-cloud-discovery-service
-      image: {{ .Values.registry.url }}/{{ .Values.cloudDiscoveryService.image.name }}:{{ .Values.cloudDiscoveryService.image.tag }}
+      image: {{ .Values.imageCredentials.registry }}/{{ .Values.cloudDiscoveryService.image.name }}:{{ .Values.cloudDiscoveryService.image.tag }}
       resources:
         requests:
           cpu: {{ quote .Values.cloudDiscoveryService.resources.requests.cpu }}
@@ -30,7 +30,7 @@ spec:
           protocol: "UDP"
           name: "rtps2-disc-mult"
   imagePullSecrets:
-    - name: {{ .Values.registry.pullSecret }}
+    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name }}
   volumes:
     - name: {{ .Release.Name }}-rti-cloud-discovery-service
       configMap:

@@ -11,7 +11,7 @@ metadata:
 spec:
   containers:
     - name: {{ .releaseName }}-shape-subscriber
-      image: {{ .registryUrl }}/{{ .imageName }}:{{ .imageTag }}
+      image: {{ .imageCredentialsRegistry }}/{{ .imageName }}:{{ .imageTag }}
       resources:
         requests:
           cpu: {{ quote .requestsCpu }}
@@ -44,6 +44,6 @@ spec:
           protocol: "UDP"
           name: "rtps2-data-uni"
   imagePullSecrets:
-    - name: {{ .registryPullSecret }}
+    - name: {{ .releaseName }}-{{ .imageCredentialsName }}
   restartPolicy: Always
 {{ end }}

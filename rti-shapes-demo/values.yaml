@@ -2,10 +2,11 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-registry:
-  url: centos-1:5000
-  pullPolicy: IfNotPresent
-  pullSecret: docker-registry-centos-1
+imageCredentials:
+  name: docker-registry-centos-1
+  registry: centos-1:5000
+  username: docker-registry
+  password: P@ssw0rd
 
 cloudDiscoveryService:
   image:
