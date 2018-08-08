@@ -17,21 +17,21 @@ spec:
         limits:
           cpu: {{ quote .Values.persistenceService.resources.limits.cpu }}
           memory: {{ quote .Values.persistenceService.resources.limits.memory }}
-      args:
-        - "-cfgName"
-        - "{{ .Values.persistenceService.cfgName }}"
-        - "-verbosity"
-        - "{{ .Values.persistenceService.verbosity }}"
       env:
         - name: NDDS_PERSISTENCE_DIRECTORY
           value: "/data"
         - name: NDDS_DISCOVERY_PEERS
           value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+      args:
+        - "-cfgName"
+        - "{{ .Values.persistenceService.cfgName }}"
+        - "-verbosity"
+        - "{{ .Values.persistenceService.verbosity }}"
       volumeMounts:
-      - name: {{ .Release.Name }}-rti-persistence-service
-        mountPath: /app
-      - name: {{ .Release.Name }}-rti-persistence-service
-        mountPath: /data
+        - name: {{ .Release.Name }}-rti-persistence-service
+          mountPath: /app
+        - name: {{ .Release.Name }}-rti-persistence-service
+          mountPath: /data
       ports:
         - containerPort: 7400
           protocol: "UDP"
