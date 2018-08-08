@@ -4,6 +4,6 @@ metadata:
   name: {{ .Release.Name }}-rti-persistence-service
 data:
   USER_QOS_PROFILES.xml: |
-{{.Files.Get "files/rti-persistence-service/USER_QOS_PROFILES.xml" | printf "%s" | indent 4}}
+{{ .Files.Get "files/rti-persistence-service/USER_QOS_PROFILES.xml" | printf "%s" | indent 4 }}
   USER_PERSISTENCE_SERVICE.xml: |
-{{.Files.Get "files/rti-persistence-service/USER_PERSISTENCE_SERVICE.xml" | printf "%s" | indent 4}}
+{{ .Files.Get "files/rti-persistence-service/USER_PERSISTENCE_SERVICE.xml" | printf "%s" | indent 4 }}
