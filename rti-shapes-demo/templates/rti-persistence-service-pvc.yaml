@@ -4,6 +4,7 @@ apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-rti-persistence-service
 spec:
+  storageClassName: rook-ceph-block
   accessModes:
     - ReadWriteOnce
   resources:
