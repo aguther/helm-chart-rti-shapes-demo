@@ -19,6 +19,10 @@ spec:
         limits:
           cpu: {{ quote .limitsCpu }}
           memory: {{ quote .limitsMemory }}
+      args:
+        - "com.github.aguther.dds.examples.shape.ShapeSubscriber"
+        - "--shape"
+        - "$(SHAPE_KIND)"
       env:
         - name: SHAPE_KIND
           valueFrom:
@@ -26,10 +30,10 @@ spec:
               fieldPath: metadata.labels['shapeKind']
         - name: NDDS_DISCOVERY_PEERS
           value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
-      args:
-        - "com.github.aguther.dds.examples.shape.ShapeSubscriber"
-        - "--shape"
-        - "$(SHAPE_KIND)"
+      volumeMounts:
+        - name: {{ .releaseName }}-shape-subscriber
+          mountPath: /app/USER_QOS_PROFILES.xml
+          subPath: USER_QOS_PROFILES.xml
       ports:
         - containerPort: 7400
           protocol: "UDP"
@@ -45,5 +49,9 @@ spec:
           name: "rtps2-data-uni"
   imagePullSecrets:
     - name: {{ .releaseName }}-{{ .imageCredentialsName | lower }}
+  volumes:
+    - name: {{ .releaseName }}-shape-subscriber
+      configMap:
+        name: {{ .releaseName }}-dds-examples
   restartPolicy: Always
 {{ end }}
