@@ -9,5 +9,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 200Mi
-  storageClassName: rook-block
+      storage: 1Gi

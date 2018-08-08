@@ -30,11 +30,11 @@ persistenceService:
   verbosity: 3
   resources:
     requests:
-      cpu: 100m
-      memory: 80Mi
-    limits:
       cpu: 150m
-      memory: 120Mi
+      memory: 100Mi
+    limits:
+      cpu: 500m
+      memory: 250Mi
 
 routingService:
   image:
