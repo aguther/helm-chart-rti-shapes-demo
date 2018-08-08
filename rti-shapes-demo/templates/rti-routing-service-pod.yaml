@@ -30,8 +30,8 @@ spec:
         - name: NDDS_DISCOVERY_PEERS
           value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
       volumeMounts:
-      - name: {{ .Release.Name }}-rti-routing-service
-        mountPath: /app
+        - name: {{ .Release.Name }}-rti-routing-service
+          mountPath: /app
       ports:
         - containerPort: 7400
           protocol: "UDP"

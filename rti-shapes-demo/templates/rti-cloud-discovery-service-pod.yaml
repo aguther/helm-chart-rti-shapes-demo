@@ -23,8 +23,8 @@ spec:
         - "-verbosity"
         - "{{ .Values.cloudDiscoveryService.verbosity }}"
       volumeMounts:
-      - name: {{ .Release.Name }}-rti-cloud-discovery-service
-        mountPath: /app
+        - name: {{ .Release.Name }}-rti-cloud-discovery-service
+          mountPath: /app
       ports:
         - containerPort: 7400
           protocol: "UDP"
