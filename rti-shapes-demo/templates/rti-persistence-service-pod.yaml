@@ -28,9 +28,9 @@ spec:
         - "-verbosity"
         - "{{ .Values.persistenceService.verbosity }}"
       volumeMounts:
-        - name: {{ .Release.Name }}-rti-persistence-service
+        - name: {{ .Release.Name }}-rti-persistence-service-config
           mountPath: /app
-        - name: {{ .Release.Name }}-rti-persistence-service
+        - name: {{ .Release.Name }}-rti-persistence-service-data
           mountPath: /data
       ports:
         - containerPort: 7400
@@ -48,10 +48,10 @@ spec:
   imagePullSecrets:
     - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
   volumes:
-    - name: {{ .Release.Name }}-rti-persistence-service
+    - name: {{ .Release.Name }}-rti-persistence-service-config
       configMap:
         name: {{ .Release.Name }}-rti-persistence-service
-    - name: {{ .Release.Name }}-rti-persistence-service
+    - name: {{ .Release.Name }}-rti-persistence-service-data
       persistentVolumeClaim:
         claimName: {{ .Release.Name }}-rti-persistence-service
   restartPolicy: Always
