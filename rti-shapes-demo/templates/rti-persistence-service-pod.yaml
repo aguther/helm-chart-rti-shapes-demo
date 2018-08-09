@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-rti-persistence-service
+  labels:
+    app: rti-persistence-service
+    release: {{ .Release.Name }}
+spec:
+  containers:
+    - name: {{ .Release.Name }}-rti-persistence-service
+      image: {{ .Values.imageCredentials.registry }}/{{ .Values.persistenceService.image.name }}:{{ .Values.persistenceService.image.tag }}
+      resources:
+        requests:
+          cpu: {{ quote .Values.persistenceService.resources.requests.cpu }}
+          memory: {{ quote .Values.persistenceService.resources.requests.memory }}
+        limits:
+          cpu: {{ quote .Values.persistenceService.resources.limits.cpu }}
+          memory: {{ quote .Values.persistenceService.resources.limits.memory }}
+      env:
+        - name: NDDS_PERSISTENCE_DIRECTORY
+          value: "/data"
+        - name: NDDS_DISCOVERY_PEERS
+          value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+      args:
+        - "-cfgName"
+        - "{{ .Values.persistenceService.cfgName }}"
+        - "-verbosity"
+        - "{{ .Values.persistenceService.verbosity }}"
+        - "-disableDatabaseLocking"
+      volumeMounts:
+        - name: {{ .Release.Name }}-rti-persistence-service-config
+          mountPath: /app
+        - name: {{ .Release.Name }}-rti-persistence-service-data
+          mountPath: /data
+      ports:
+        - containerPort: 7400
+          protocol: "UDP"
+          name: "rtps2-disc-mult"
+        - containerPort: 7401
+          protocol: "UDP"
+          name: "rtps2-disc-uni"
+        - containerPort: 7410
+          protocol: "UDP"
+          name: "rtps2-data-mult"
+        - containerPort: 7411
+          protocol: "UDP"
+          name: "rtps2-data-uni"
+  imagePullSecrets:
+    - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
+  volumes:
+    - name: {{ .Release.Name }}-rti-persistence-service-config
+      configMap:
+        name: {{ .Release.Name }}-rti-persistence-service
+    - name: {{ .Release.Name }}-rti-persistence-service-data
+      persistentVolumeClaim:
+        claimName: {{ .Release.Name }}-rti-persistence-service
+  securityContext:
+    fsGroup: 998
+  restartPolicy: Always

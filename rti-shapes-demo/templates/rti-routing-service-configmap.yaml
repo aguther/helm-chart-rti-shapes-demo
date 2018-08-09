@@ -4,6 +4,6 @@ metadata:
   name: {{ .Release.Name }}-rti-routing-service
 data:
   USER_QOS_PROFILES.xml: |
-{{.Files.Get "files/rti-routing-service/USER_QOS_PROFILES.xml" | printf "%s" | indent 4}}
+{{ .Files.Get "files/rti-routing-service/USER_QOS_PROFILES.xml" | printf "%s" | indent 4 }}
   USER_ROUTING_SERVICE.xml: |
-{{.Files.Get "files/rti-routing-service/USER_ROUTING_SERVICE.xml" | printf "%s" | indent 4}}
+{{ .Files.Get "files/rti-routing-service/USER_ROUTING_SERVICE.xml" | printf "%s" | indent 4 }}

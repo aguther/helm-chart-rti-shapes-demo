@@ -5,4 +5,4 @@ metadata:
   name: {{ .Release.Name }}-rti-cloud-discovery-service
 data:
   USER_CLOUD_DISCOVERY_SERVICE.xml: |
-{{.Files.Get "files/rti-cloud-discovery-service/USER_CLOUD_DISCOVERY_SERVICE.xml" | printf "%s" | indent 4}}
+{{ .Files.Get "files/rti-cloud-discovery-service/USER_CLOUD_DISCOVERY_SERVICE.xml" | printf "%s" | indent 4 }}
