@@ -27,8 +27,20 @@
                 <single_publisher>true</single_publisher>
                 <single_subscriber>true</single_subscriber>
                 <datawriter_qos base_name="QosLibrary::Base">
+                    <durability>
+                        <kind>PERSISTENT_DURABILITY_QOS</kind>
+                    </durability>
+                    <reliability>
+                        <kind>RELIABLE_RELIABILITY_QOS</kind>
+                    </reliability>
                 </datawriter_qos>
                 <datareader_qos base_name="QosLibrary::Base">
+                    <durability>
+                        <kind>PERSISTENT_DURABILITY_QOS</kind>
+                    </durability>
+                    <reliability>
+                        <kind>RELIABLE_RELIABILITY_QOS</kind>
+                    </reliability>
                 </datareader_qos>
             </persistence_group>
 
