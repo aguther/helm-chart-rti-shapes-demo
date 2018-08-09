@@ -54,4 +54,6 @@ spec:
     - name: {{ .Release.Name }}-rti-persistence-service-data
       persistentVolumeClaim:
         claimName: {{ .Release.Name }}-rti-persistence-service
+  securityContext:
+    fsGroup: 998
   restartPolicy: Always
