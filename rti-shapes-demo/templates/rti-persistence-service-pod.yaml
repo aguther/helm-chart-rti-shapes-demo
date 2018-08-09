@@ -27,6 +27,7 @@ spec:
         - "{{ .Values.persistenceService.cfgName }}"
         - "-verbosity"
         - "{{ .Values.persistenceService.verbosity }}"
+        - "-disableDatabaseLocking"
       volumeMounts:
         - name: {{ .Release.Name }}-rti-persistence-service-config
           mountPath: /app
