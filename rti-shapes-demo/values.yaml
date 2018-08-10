@@ -23,6 +23,7 @@ cloudDiscoveryService:
       memory: 50Mi
 
 persistenceService:
+  enabled: false
   image:
     name: rti-persistence-service
     tag: 5.3.1

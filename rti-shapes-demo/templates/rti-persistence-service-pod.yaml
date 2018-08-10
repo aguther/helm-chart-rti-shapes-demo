@@ -1,3 +1,4 @@
+{{- if .Values.persistenceService.enabled -}}
 ---
 apiVersion: v1
 kind: Pod
@@ -58,3 +59,4 @@ spec:
   securityContext:
     fsGroup: 998
   restartPolicy: Always
+{{- end -}}
