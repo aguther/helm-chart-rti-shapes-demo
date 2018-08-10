@@ -27,7 +27,7 @@ persistenceService:
   image:
     name: rti-persistence-service
     tag: 5.3.1
-  cfgName: dds-examples-persistence
+  cfgName: rti-shapes-demo
   verbosity: 3
   resources:
     requests:
@@ -41,7 +41,7 @@ routingService:
   image:
     name: rti-routing-service
     tag: 5.3.1
-  cfgName: dds-examples-routing-static
+  cfgName: rti-shapes-demo
   verbosity: 3
   port: 7650
   service:
