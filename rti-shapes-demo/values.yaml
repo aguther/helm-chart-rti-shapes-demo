@@ -27,6 +27,8 @@ persistenceService:
   image:
     name: rti-persistence-service
     tag: 5.3.1
+  storage:
+    className: rook-ceph-block
   cfgName: rti-shapes-demo
   verbosity: 3
   resources:
