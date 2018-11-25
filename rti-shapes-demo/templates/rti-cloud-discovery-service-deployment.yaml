@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-rti-cloud-discovery-service
+  labels:
+    app: rti-cloud-discovery-service
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rti-cloud-discovery-service
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-rti-cloud-discovery-service
+      labels:
+        app: rti-cloud-discovery-service
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-rti-cloud-discovery-service
+          image: {{ .Values.imageCredentials.registry }}/{{ .Values.cloudDiscoveryService.image.name }}:{{ .Values.cloudDiscoveryService.image.tag }}
+          resources:
+            requests:
+              cpu: {{ quote .Values.cloudDiscoveryService.resources.requests.cpu }}
+              memory: {{ quote .Values.cloudDiscoveryService.resources.requests.memory }}
+            limits:
+              cpu: {{ quote .Values.cloudDiscoveryService.resources.limits.cpu }}
+              memory: {{ quote .Values.cloudDiscoveryService.resources.limits.memory }}
+          args:
+            - "-cfgName"
+            - "{{ .Values.cloudDiscoveryService.cfgName }}"
+            - "-verbosity"
+            - "{{ .Values.cloudDiscoveryService.verbosity }}"
+          volumeMounts:
+            - name: {{ .Release.Name }}-rti-cloud-discovery-service
+              mountPath: /app
+          ports:
+            - containerPort: 7400
+              protocol: "UDP"
+              name: "rtps2-disc-mult"
+      imagePullSecrets:
+        - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
+      volumes:
+        - name: {{ .Release.Name }}-rti-cloud-discovery-service
+          configMap:
+            name: {{ .Release.Name }}-rti-cloud-discovery-service
+      restartPolicy: Always
