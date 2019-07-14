@@ -1,0 +1,65 @@
+{{- if .Values.rtiMonitoringPrometheusCollector.enabled -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-rti-monitoring-prometheus-collector
+  labels:
+    app: rti-monitoring-prometheus-collector
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rti-monitoring-prometheus-collector
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-rti-monitoring-prometheus-collector
+      labels:
+        app: rti-monitoring-prometheus-collector
+        release: {{ .Release.Name }}
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '9102'
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-rti-monitoring-prometheus-collector
+          image: {{ .Values.imageCredentials.registry }}/{{ .Values.rtiMonitoringPrometheusCollector.image.name }}:{{ .Values.rtiMonitoringPrometheusCollector.image.tag }}
+          resources:
+            requests:
+              cpu: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.requests.cpu }}
+              memory: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.requests.memory }}
+            limits:
+              cpu: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.limits.cpu }}
+              memory: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.limits.memory }}
+          args:
+            - "com.github.aguther.dds.examples.prometheus.monitoring.Collector"
+          env:
+            - name: NDDS_DISCOVERY_PEERS
+              value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+          volumeMounts:
+            - name: {{ .Release.Name }}-rti-monitoring-prometheus-collector
+              mountPath: /app/USER_QOS_PROFILES.xml
+              subPath: USER_QOS_PROFILES.xml
+          ports:
+            - containerPort: 7400
+              protocol: "UDP"
+              name: "rtps2-disc-mult"
+            - containerPort: 7401
+              protocol: "UDP"
+              name: "rtps2-disc-uni"
+            - containerPort: 7410
+              protocol: "UDP"
+              name: "rtps2-data-mult"
+            - containerPort: 7411
+              protocol: "UDP"
+              name: "rtps2-data-uni"
+      imagePullSecrets:
+        - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
+      volumes:
+        - name: {{ .Release.Name }}-rti-monitoring-prometheus-collector
+          configMap:
+            name: {{ .Release.Name }}-dds-examples
+      restartPolicy: Always
+{{- end -}}

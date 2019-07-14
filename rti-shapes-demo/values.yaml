@@ -11,7 +11,7 @@ imageCredentials:
 cloudDiscoveryService:
   image:
     name: rti-cloud-discovery-service
-    tag: 5.3.1
+    tag: 6.0.0
   cfgName: rti-cloud-discovery-service
   verbosity: 3
   resources:
@@ -26,7 +26,7 @@ persistenceService:
   enabled: false
   image:
     name: rti-persistence-service
-    tag: 5.3.1
+    tag: 6.0.0
   storage:
     className: rook-ceph-block
   cfgName: rti-shapes-demo
@@ -42,7 +42,7 @@ persistenceService:
 routingService:
   image:
     name: rti-routing-service
-    tag: 5.3.1
+    tag: 6.0.0
   cfgName: rti-shapes-demo
   verbosity: 3
   port: 7650
@@ -61,7 +61,7 @@ routingService:
 ddsExamples:
   image:
     name: dds-examples
-    tag: latest
+    tag: 6.0.0
   publisher:
     configurations:
       - shapeKind: SQUARE
@@ -89,3 +89,16 @@ ddsExamples:
       limits:
         cpu: 150m
         memory: 180Mi
+
+rtiMonitoringPrometheusCollector:
+  enabled: true
+  image:
+    name: dds-examples
+    tag: 6.0.0
+  resources:
+    requests:
+      cpu: 150m
+      memory: 500Mi
+    limits:
+      cpu: 500m
+      memory: 750Mi

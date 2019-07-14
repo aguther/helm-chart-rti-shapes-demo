@@ -4,13 +4,18 @@
 
   <!-- QoS Profiles -->
   <qos_library name="QosLibrary">
-    <qos_profile name="Base" base_name="BuiltinQosLib::Baseline.5.3.0" is_default_qos="true">
+    <qos_profile name="Base" base_name="BuiltinQosLib::Baseline.6.0.0" is_default_qos="true">
       <participant_qos>
         <event>
           <thread>
             <priority>THREAD_PRIORITY_HIGH</priority>
           </thread>
         </event>
+        <resource_limits>
+          <participant_property_string_max_length>4096</participant_property_string_max_length>
+          <participant_property_list_max_length>45</participant_property_list_max_length>
+          <type_object_max_serialized_length>65535</type_object_max_serialized_length>
+        </resource_limits>
         <property>
           <value>
             <element>
@@ -18,30 +23,36 @@
               <value>2097152</value>
             </element>
             <element>
-              <name>dds.transport.UDPv6.builtin.recv_socket_buffer_size</name>
-              <value>2097152</value>
-            </element>
-            <element>
               <name>dds.transport.UDPv4.builtin.send_socket_buffer_size</name>
               <value>1048576</value>
+            </element>
+            <element>
+              <name>dds.transport.UDPv6.builtin.recv_socket_buffer_size</name>
+              <value>2097152</value>
             </element>
             <element>
               <name>dds.transport.UDPv6.builtin.send_socket_buffer_size</name>
               <value>1048576</value>
             </element>
+            <element>
+              <name>dds.clock.internal_clock</name>
+              <value>monotonic,realtime</value>
+            </element>
           </value>
         </property>
-        <wire_protocol>
-          <rtps_auto_id_kind>RTPS_AUTO_ID_FROM_UUID</rtps_auto_id_kind>
-        </wire_protocol>
       </participant_qos>
-
+      
       <datawriter_qos>
         <writer_data_lifecycle>
           <autodispose_unregistered_instances>false</autodispose_unregistered_instances>
+          <autopurge_disposed_instances_delay>
+            <sec>0</sec>
+            <nanosec>0</nanosec>
+          </autopurge_disposed_instances_delay>
         </writer_data_lifecycle>
         <writer_resource_limits>
           <instance_replacement>DISPOSED_INSTANCE_REPLACEMENT</instance_replacement>
+          <replace_empty_instances>false</replace_empty_instances>
         </writer_resource_limits>
         <property>
           <value>
@@ -60,8 +71,14 @@
           </value>
         </property>
       </datawriter_qos>
-
+      
       <datareader_qos>
+        <reader_data_lifecycle>
+          <autopurge_disposed_instances_delay>
+            <sec>0</sec>
+            <nanosec>0</nanosec>
+          </autopurge_disposed_instances_delay>
+        </reader_data_lifecycle>
         <protocol>
           <propagate_dispose_of_unregistered_instances>true</propagate_dispose_of_unregistered_instances>
         </protocol>

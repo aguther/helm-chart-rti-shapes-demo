@@ -34,6 +34,7 @@ spec:
             - "{{ .Values.routingService.cfgName }}"
             - "-verbosity"
             - "{{ .Values.routingService.verbosity }}"
+            - "-ignoreXsdValidation"
           env:
             - name: NDDS_TCP_PUBLIC_ADDRESS
               value: "{{ .Values.routingService.service.ip }}:{{ .Values.routingService.service.port }}"
