@@ -5,6 +5,7 @@
   <routing_service name="rti-shapes-demo" group_name="rti-shapes-demo">
 
     <administration>
+      <enabled>true</enabled>
       <domain_id>0</domain_id>
       <distributed_logger>
         <enabled>false</enabled>
