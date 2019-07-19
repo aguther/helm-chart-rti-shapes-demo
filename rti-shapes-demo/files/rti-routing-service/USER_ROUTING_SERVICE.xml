@@ -7,7 +7,7 @@
     <administration>
       <domain_id>0</domain_id>
       <distributed_logger>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
         <echo_to_stdout>true</echo_to_stdout>
       </distributed_logger>
       <participant_qos base_name="QosLibrary::Base"/>
