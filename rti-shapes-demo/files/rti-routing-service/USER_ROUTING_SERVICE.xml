@@ -73,7 +73,7 @@
             <allow_topic_name_filter>Square</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -84,7 +84,7 @@
             <allow_topic_name_filter>Square</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -97,7 +97,7 @@
             <allow_topic_name_filter>Square</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -108,7 +108,7 @@
             <allow_topic_name_filter>Square</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -121,7 +121,7 @@
             <allow_topic_name_filter>Circle</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -132,7 +132,7 @@
             <allow_topic_name_filter>Circle</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -145,7 +145,7 @@
             <allow_topic_name_filter>Circle</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -156,7 +156,7 @@
             <allow_topic_name_filter>Circle</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -169,7 +169,7 @@
             <allow_topic_name_filter>Triangle</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -180,7 +180,7 @@
             <allow_topic_name_filter>Triangle</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -193,7 +193,7 @@
             <allow_topic_name_filter>Triangle</allow_topic_name_filter>
             <datareader_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>
@@ -204,7 +204,7 @@
             <allow_topic_name_filter>Triangle</allow_topic_name_filter>
             <datawriter_qos base_name="QosLibrary::Base">
               <durability>
-                <kind>PERSISTENT_DURABILITY_QOS</kind>
+                <kind>TRANSIENT_DURABILITY_QOS</kind>
               </durability>
               <reliability>
                 <kind>RELIABLE_RELIABILITY_QOS</kind>

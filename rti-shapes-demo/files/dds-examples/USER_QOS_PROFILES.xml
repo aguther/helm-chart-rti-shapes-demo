@@ -225,6 +225,12 @@
       <publisher name="Publisher">
         <data_writer name="SquareDataWriter" topic_ref="Square">
           <datawriter_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>PERSISTENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datawriter_qos>
         </data_writer>
       </publisher>
@@ -238,6 +244,12 @@
       <subscriber name="Subscriber">
         <data_reader name="SquareDataReader" topic_ref="Square">
           <datareader_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>TRANSIENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datareader_qos>
         </data_reader>
       </subscriber>
@@ -252,6 +264,12 @@
       <publisher name="Publisher">
         <data_writer name="CircleDataWriter" topic_ref="Circle">
           <datawriter_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>PERSISTENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datawriter_qos>
         </data_writer>
       </publisher>
@@ -265,6 +283,12 @@
       <subscriber name="Subscriber">
         <data_reader name="CircleDataReader" topic_ref="Circle">
           <datareader_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>TRANSIENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datareader_qos>
         </data_reader>
       </subscriber>
@@ -279,6 +303,12 @@
       <publisher name="Publisher">
         <data_writer name="TriangleDataWriter" topic_ref="Triangle">
           <datawriter_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>PERSISTENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datawriter_qos>
         </data_writer>
       </publisher>
@@ -292,6 +322,12 @@
       <subscriber name="Subscriber">
         <data_reader name="TriangleDataReader" topic_ref="Triangle">
           <datareader_qos base_name="QosLibrary::Base">
+            <durability>
+              <kind>TRANSIENT_DURABILITY_QOS</kind>
+            </durability>
+            <reliability>
+              <kind>RELIABLE_RELIABILITY_QOS</kind>
+            </reliability>
           </datareader_qos>
         </data_reader>
       </subscriber>
