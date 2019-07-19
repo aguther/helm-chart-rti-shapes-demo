@@ -61,7 +61,7 @@ routingService:
 ddsExamples:
   image:
     name: dds-examples
-    tag: 6.0.0
+    tag: 6.0.0-d5924b6
   publisher:
     configurations:
       - shapeKind: SQUARE
@@ -94,7 +94,7 @@ rtiMonitoringPrometheusCollector:
   enabled: true
   image:
     name: dds-examples
-    tag: 6.0.0
+    tag: 6.0.0-d5924b6
   resources:
     requests:
       cpu: 150m
