@@ -1,4 +1,4 @@
-{{- if .Values.rtiMonitoringPrometheusCollector.enabled -}}
+{{- if .Values.prometheusCollectors.enabled -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,14 +25,14 @@ spec:
     spec:
       containers:
         - name: {{ .Release.Name }}-prometheus-collector-dds
-          image: {{ .Values.imageCredentials.registry }}/{{ .Values.rtiMonitoringPrometheusCollector.image.name }}:{{ .Values.rtiMonitoringPrometheusCollector.image.tag }}
+          image: {{ .Values.imageCredentials.registry }}/{{ .Values.prometheusCollectors.image.name }}:{{ .Values.prometheusCollectors.image.tag }}
           resources:
             requests:
-              cpu: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.requests.cpu }}
-              memory: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.requests.memory }}
+              cpu: {{ quote .Values.prometheusCollectors.resources.requests.cpu }}
+              memory: {{ quote .Values.prometheusCollectors.resources.requests.memory }}
             limits:
-              cpu: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.limits.cpu }}
-              memory: {{ quote .Values.rtiMonitoringPrometheusCollector.resources.limits.memory }}
+              cpu: {{ quote .Values.prometheusCollectors.resources.limits.cpu }}
+              memory: {{ quote .Values.prometheusCollectors.resources.limits.memory }}
           args:
             - "com.github.aguther.dds.examples.prometheus.monitoring.Collector"
           env:

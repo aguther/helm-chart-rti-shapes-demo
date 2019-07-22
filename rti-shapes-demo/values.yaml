@@ -93,7 +93,7 @@ ddsExamples:
         cpu: 150m
         memory: 180Mi
 
-rtiMonitoringPrometheusCollector:
+prometheusCollectors:
   enabled: true
   image:
     name: dds-examples
