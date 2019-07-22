@@ -1,0 +1,8 @@
+{{- if .Values.webIntegrationService.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-rti-web-integration-service
+data:
+  {{- (.Files.Glob "files/rti-web-integration-service/*").AsConfig | nindent 2 }}
+{{- end -}}

@@ -1,0 +1,80 @@
+{{- if .Values.webIntegrationService.enabled -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-rti-web-integration-service
+  labels:
+    app: rti-web-integration-service
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rti-web-integration-service
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: {{ .Release.Name }}-rti-web-integration-service
+      labels:
+        app: rti-web-integration-service
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-rti-web-integration-service
+          image: {{ .Values.imageCredentials.registry }}/{{ .Values.webIntegrationService.image.name }}:{{ .Values.webIntegrationService.image.tag }}
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: {{ quote .Values.webIntegrationService.resources.requests.cpu }}
+              memory: {{ quote .Values.webIntegrationService.resources.requests.memory }}
+            limits:
+              cpu: {{ quote .Values.webIntegrationService.resources.limits.cpu }}
+              memory: {{ quote .Values.webIntegrationService.resources.limits.memory }}
+          args:
+            - "-cfgFile"
+            - "{{ .Values.webIntegrationService.cfgFile }}"
+            - "-cfgName"
+            - "{{ .Values.webIntegrationService.cfgName }}"
+              {{- if .Values.webIntegrationService.enableKeepAlive }}
+            - "-enableKeepAlive"
+            - "{{ .Values.webIntegrationService.enableKeepAlive }}"
+              {{- end }}
+              {{- if .Values.webIntegrationService.documentRoot }}
+            - "-documentRoot"
+            - "{{ .Values.webIntegrationService.documentRoot }}"
+              {{- end }}
+              {{- if .Values.webIntegrationService.verbosity }}
+            - "-verbosity"
+            - "{{ .Values.webIntegrationService.verbosity }}"
+              {{- end }}
+          env:
+            - name: NDDS_DISCOVERY_PEERS
+              value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+          volumeMounts:
+            - name: {{ .Release.Name }}-rti-web-integration-service
+              mountPath: /app
+          ports:
+            - containerPort: 7400
+              protocol: "UDP"
+              name: "rtps2-disc-mult"
+            - containerPort: 7401
+              protocol: "UDP"
+              name: "rtps2-disc-uni"
+            - containerPort: 7410
+              protocol: "UDP"
+              name: "rtps2-data-mult"
+            - containerPort: 7411
+              protocol: "UDP"
+              name: "rtps2-data-uni"
+            - containerPort: {{ .Values.webIntegrationService.port }}
+              protocol: "TCP"
+              name: "rtps2-tcp"
+      imagePullSecrets:
+        - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
+      volumes:
+        - name: {{ .Release.Name }}-rti-web-integration-service
+          configMap:
+            name: {{ .Release.Name }}-rti-web-integration-service
+      restartPolicy: Always
+{{- end -}}

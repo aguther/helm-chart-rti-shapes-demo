@@ -1,0 +1,24 @@
+{{- if .Values.webIntegrationService.enabled -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rti-web-integration-service
+  release: {{ .Release.Name }}
+spec:
+  {{- if eq .Values.webIntegrationService.service.type "LoadBalancer" }}
+  type: LoadBalancer
+  loadBalancerIP: {{ .Values.webIntegrationService.service.ip }}
+  {{- else }}
+  type: ClusterIP
+  externalIPs:
+    - {{ .Values.webIntegrationService.service.ip }}
+  {{- end }}
+  ports:
+  - port: {{ .Values.webIntegrationService.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.webIntegrationService.port }}
+  selector:
+    app: rti-web-integration-service
+    release: {{ .Release.Name }}
+{{- end -}}

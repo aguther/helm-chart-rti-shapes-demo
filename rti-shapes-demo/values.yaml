@@ -60,6 +60,29 @@ routingService:
       cpu: 150m
       memory: 120Mi
 
+webIntegrationService:
+  enabled: true
+  image:
+    name: rti-web-integration-service
+    tag: 6.0.0
+  cfgFile: /example/examples/simple_shapes_demo/simple_shapes_demo.xml
+  cfgName: simpleShapesDemo
+  enableKeepAlive: "yes"
+  documentRoot: "/example"
+  verbosity: 3
+  port: 8080
+  service:
+    type: ExternalIP
+    ip: 172.30.0.11
+    port: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 80Mi
+    limits:
+      cpu: 150m
+      memory: 120Mi
+
 ddsExamples:
   enabled: true
   image:
