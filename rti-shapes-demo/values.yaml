@@ -9,6 +9,7 @@ imageCredentials:
   password: P@ssw0rd
 
 cloudDiscoveryService:
+  enabled: true
   image:
     name: rti-cloud-discovery-service
     tag: 6.0.0
@@ -40,6 +41,7 @@ persistenceService:
       memory: 250Mi
 
 routingService:
+  enabled: false
   image:
     name: rti-routing-service
     tag: 6.0.0
@@ -59,6 +61,7 @@ routingService:
       memory: 120Mi
 
 ddsExamples:
+  enabled: true
   image:
     name: dds-examples
     tag: 6.0.0-bb78f8e

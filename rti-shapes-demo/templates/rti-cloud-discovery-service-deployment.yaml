@@ -1,3 +1,4 @@
+{{- if .Values.cloudDiscoveryService.enabled -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,3 +49,4 @@ spec:
           configMap:
             name: {{ .Release.Name }}-rti-cloud-discovery-service
       restartPolicy: Always
+{{- end -}}

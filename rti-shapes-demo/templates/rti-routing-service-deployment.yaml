@@ -1,3 +1,4 @@
+{{- if .Values.routingService.enabled -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -67,3 +68,4 @@ spec:
           configMap:
             name: {{ .Release.Name }}-rti-routing-service
       restartPolicy: Always
+{{- end -}}

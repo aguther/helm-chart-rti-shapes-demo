@@ -1,3 +1,4 @@
+{{- if .Values.routingService.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,3 +8,4 @@ data:
 {{ .Files.Get "files/rti-routing-service/USER_QOS_PROFILES.xml" | printf "%s" | indent 4 }}
   USER_ROUTING_SERVICE.xml: |
 {{ .Files.Get "files/rti-routing-service/USER_ROUTING_SERVICE.xml" | printf "%s" | indent 4 }}
+{{- end -}}

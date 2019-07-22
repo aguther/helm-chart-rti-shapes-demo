@@ -1,3 +1,4 @@
+{{- if .Values.ddsExamples.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -5,3 +6,4 @@ metadata:
 data:
   USER_QOS_PROFILES.xml: |
 {{ .Files.Get "files/dds-examples/USER_QOS_PROFILES.xml" | printf "%s" | indent 4 }}
+{{- end -}}
