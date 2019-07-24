@@ -51,9 +51,11 @@ spec:
           env:
             - name: NDDS_DISCOVERY_PEERS
               value: "rtps@udpv4://$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_HOST):$(RTI_CLOUD_DISCOVERY_SERVICE_SERVICE_PORT)"
+          {{- if .Values.webIntegrationService.useConfigMap }}
           volumeMounts:
             - name: {{ .Release.Name }}-rti-web-integration-service
               mountPath: /app
+          {{- end }}
           ports:
             - containerPort: 7400
               protocol: "UDP"
@@ -72,9 +74,11 @@ spec:
               name: "rtps2-tcp"
       imagePullSecrets:
         - name: {{ .Release.Name }}-{{ .Values.imageCredentials.name | lower }}
+      {{- if .Values.webIntegrationService.useConfigMap }}
       volumes:
         - name: {{ .Release.Name }}-rti-web-integration-service
           configMap:
             name: {{ .Release.Name }}-rti-web-integration-service
+      {{- end }}
       restartPolicy: Always
 {{- end -}}

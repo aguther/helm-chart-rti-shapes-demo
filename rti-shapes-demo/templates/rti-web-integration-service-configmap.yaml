@@ -1,4 +1,4 @@
-{{- if .Values.webIntegrationService.enabled -}}
+{{- if and .Values.webIntegrationService.enabled .Values.webIntegrationService.useConfigMap -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
