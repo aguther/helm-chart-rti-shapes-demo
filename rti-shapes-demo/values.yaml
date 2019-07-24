@@ -63,13 +63,13 @@ routingService:
 webIntegrationService:
   enabled: true
   image:
-    name: rti-web-integration-service
-    tag: 6.0.0
-  cfgFile: /example/examples/simple_shapes_demo/simple_shapes_demo.xml
+    name: rti-web-integration-service-shapes-demo
+    tag: 6.0.0-a47e240
   useConfigMap: false
+  cfgFile: /app/examples/simple_shapes_demo/simple_shapes_demo.xml
   cfgName: simpleShapesDemo
   enableKeepAlive: "yes"
-  documentRoot: "/example"
+  documentRoot: "/app"
   verbosity: 3
   port: 8080
   service:
