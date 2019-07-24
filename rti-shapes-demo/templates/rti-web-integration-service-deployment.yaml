@@ -23,7 +23,6 @@ spec:
       containers:
         - name: {{ .Release.Name }}-rti-web-integration-service
           image: {{ .Values.imageCredentials.registry }}/{{ .Values.webIntegrationService.image.name }}:{{ .Values.webIntegrationService.image.tag }}
-          imagePullPolicy: Always
           resources:
             requests:
               cpu: {{ quote .Values.webIntegrationService.resources.requests.cpu }}
