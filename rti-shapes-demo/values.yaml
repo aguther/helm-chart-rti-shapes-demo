@@ -12,7 +12,7 @@ cloudDiscoveryService:
   enabled: true
   image:
     name: rti-cloud-discovery-service
-    tag: 6.0.0
+    tag: 6.0.1
   cfgName: rti-cloud-discovery-service
   verbosity: 3
   resources:
@@ -27,7 +27,7 @@ persistenceService:
   enabled: false
   image:
     name: rti-persistence-service
-    tag: 6.0.0
+    tag: 6.0.1
   storage:
     className: rook-ceph-block
   cfgName: rti-shapes-demo
@@ -44,7 +44,7 @@ routingService:
   enabled: false
   image:
     name: rti-routing-service
-    tag: 6.0.0
+    tag: 6.0.1
   cfgName: rti-shapes-demo
   verbosity: 3
   port: 7650
@@ -64,7 +64,7 @@ webIntegrationService:
   enabled: true
   image:
     name: rti-web-integration-service-shapes-demo
-    tag: 6.0.0-a47e240
+    tag: 6.0.1-6caaf5b
   useConfigMap: false
   cfgFile: /app/examples/simple_shapes_demo/simple_shapes_demo.xml
   cfgName: simpleShapesDemo
@@ -88,7 +88,7 @@ ddsExamples:
   enabled: true
   image:
     name: dds-examples
-    tag: 6.0.0-bb78f8e
+    tag: 6.0.1-6caaf5b
   publisher:
     configurations:
       - shapeKind: SQUARE
@@ -121,7 +121,7 @@ prometheusCollectors:
   enabled: true
   image:
     name: dds-examples
-    tag: 6.0.0-bb78f8e
+    tag: 6.0.1-6caaf5b
   resources:
     requests:
       cpu: 150m
