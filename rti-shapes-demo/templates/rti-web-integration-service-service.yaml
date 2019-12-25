@@ -7,6 +7,14 @@ metadata:
   labels:
     release: {{ .Release.Name }}
 spec:
+  selector:
+    app: rti-web-integration-service
+    release: {{ .Release.Name }}
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.webIntegrationService.service.port }}
+    targetPort: {{ .Values.webIntegrationService.port }}
   {{- if eq .Values.webIntegrationService.service.type "LoadBalancer" }}
   type: LoadBalancer
   loadBalancerIP: {{ .Values.webIntegrationService.service.ip }}
@@ -15,11 +23,4 @@ spec:
   externalIPs:
     - {{ .Values.webIntegrationService.service.ip }}
   {{- end }}
-  ports:
-  - port: {{ .Values.webIntegrationService.service.port }}
-    protocol: TCP
-    targetPort: {{ .Values.webIntegrationService.port }}
-  selector:
-    app: rti-web-integration-service
-    release: {{ .Release.Name }}
 {{- end -}}

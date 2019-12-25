@@ -7,6 +7,14 @@ metadata:
   labels:
     release: {{ .Release.Name }}
 spec:
+  ports:
+  - name: rtps-over-tcp
+    protocol: TCP
+    port: {{ .Values.routingService.service.port }}
+    targetPort: {{ .Values.routingService.port }}
+  selector:
+    app: rti-routing-service
+    release: {{ .Release.Name }}
   {{- if eq .Values.routingService.service.type "LoadBalancer" }}
   type: LoadBalancer
   loadBalancerIP: {{ .Values.routingService.service.ip }}
@@ -15,11 +23,4 @@ spec:
   externalIPs:
     - {{ .Values.routingService.service.ip }}
   {{- end }}
-  ports:
-  - port: {{ .Values.routingService.service.port }}
-    protocol: TCP
-    targetPort: {{ .Values.routingService.port }}
-  selector:
-    app: rti-routing-service
-    release: {{ .Release.Name }}
 {{- end -}}

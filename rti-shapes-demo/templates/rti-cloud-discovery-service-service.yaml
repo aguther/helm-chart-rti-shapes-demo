@@ -7,13 +7,12 @@ metadata:
   labels:
     release: {{ .Release.Name }}
 spec:
-  ports:
-  - port: 7400
-    protocol: UDP
-    targetPort: 7400
   selector:
     app: rti-cloud-discovery-service
     release: {{ .Release.Name }}
-  sessionAffinity: None
-  type: ClusterIP
+  ports:
+  - name: rtps
+    protocol: UDP
+    port: 7400
+    targetPort: 7400
 {{- end -}}
